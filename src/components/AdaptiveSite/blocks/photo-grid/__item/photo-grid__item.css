@@ -1,8 +1,0 @@
-.RTphoto-grid__item {
-    transition: transform 0.2s, box-shadow 0.2s ease-in-out;
-}
-
-.RTphoto-grid__item:hover {
-    transform: scale(1.05, 1.05);
-    box-shadow: 0 0 20px black;
-}
