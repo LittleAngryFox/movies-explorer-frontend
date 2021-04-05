@@ -1,0 +1,22 @@
+.RTfooter__lists {
+    display: grid;
+    grid-template-columns: repeat(5, max-content);
+    grid-template-rows: max-content;
+    grid-row-gap: 48px;
+    grid-column-gap: 18px;
+
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+@media screen and (max-width: 600px)
+{    
+    .RTfooter__lists {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-row-gap: 32px;
+    }
+    
+}

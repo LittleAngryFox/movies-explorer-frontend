@@ -1,0 +1,9 @@
+.HTLvideo__iframes {
+  margin: 0;
+  height: 316px;
+  padding: 0;
+  z-index: 1;
+  position: relative;
+  bottom: -50px;
+
+}

@@ -1,0 +1,12 @@
+.RTplace__text {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 320px)
+{    
+    .RTplace__text {
+        padding: 0 16px 0 16px;
+    }
+}
