@@ -1,0 +1,62 @@
+.RTcover__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 245px 40px;
+
+    max-width: 100%; 
+    min-height: 200px;
+
+    box-sizing: border-box;
+
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    color: #fff;
+
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1024px)
+{    
+    .RTcover__link {
+        padding: 195px 40px;
+
+    }
+}
+
+@media screen and (max-width: 768px)
+{    
+    .RTcover__link {
+        padding: 115px 40px;
+
+    }
+}
+
+@media screen and (max-width: 320px)
+{    
+    .RTcover__link {
+        padding: 33px 40px;
+
+    }
+}
+
+.RTcover__link::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:  #2A2C2F;
+    opacity: 0.3;
+    z-index: -1;
+
+    transition: opacity 200ms ease-in-out;
+}
+
+.RTcover__link:hover:before {
+    opacity: 0.8;
+}

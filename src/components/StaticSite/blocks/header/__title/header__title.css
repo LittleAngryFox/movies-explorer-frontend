@@ -1,0 +1,12 @@
+.HTLheader__title {
+  margin: 0 0 0 64px;
+
+  font-size: 102px;
+  line-height: 96px;
+  font-weight: bold;
+  align-self: center;
+  z-index: 2;
+  color:black;
+
+  width: 730px;
+}

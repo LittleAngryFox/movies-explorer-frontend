@@ -1,0 +1,11 @@
+.RTheader__lang-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 18px 0 0;
+}
+
+
+
+.RTheader__lang-list:last-child {
+    padding: 0;
+}

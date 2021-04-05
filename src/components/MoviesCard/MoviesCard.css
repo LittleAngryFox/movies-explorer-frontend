@@ -1,0 +1,99 @@
+.movies__list-item {
+    display: grid;
+    max-width: 364px;
+    max-height: 271px;
+    width: 100%;
+    background-color: #222222;
+    padding: 0;
+    text-decoration: none;
+    color: white;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, min-content);
+}
+
+.movies__list-item-name {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.2;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 14px 0 0 14px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.movies__list-item-duration {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.18;
+    color: #8b8b8b;
+    margin: 9px 0 14px 14px;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.movies__list-item-image {
+    max-height: 203px;
+    width: 100%;
+    height: calc(190px + (203 - 190) * ((100vw - 768px) / (1280 - 768)));
+    object-fit: cover;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+@media (max-width: 768px) {
+    .movies__list-item-image {
+        height: calc(168px + (190 - 168) * ((100vw - 320px) / (768 - 320)));
+    }
+}
+
+.movies__list-item-button {
+    width: 30px;
+    height: 30px;
+    margin: 0 14px 0;
+    border-radius: 100%;
+    justify-self: right;
+    align-self: center;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: #313131;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    transition: all 0.6s ease-in-out;
+}
+
+.movies__list-item-button_save {
+    background-image: url("../../images/save-d.svg");
+}
+
+.movies__list-item-button_save:hover {
+    opacity: 0.6;
+    background-image: url("../../images/save.svg");
+}
+
+.movies__list-item-button_saved {
+    background-color: #3DDC84;
+    background-image: url("../../images/save.svg");
+}
+
+.movies__list-item-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px black;
+}
+
+.movies__list-item-button_delete {
+    background-image: url("../../images/delete-save.svg");
+}
+
+.movies__list-item-button_delete:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
