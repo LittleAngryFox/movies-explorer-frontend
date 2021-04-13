@@ -44,7 +44,7 @@ function App() {
         </Route>
 
         <Route exact path='/'>
-          <Header loggedIn={false} background={true} minimal={false} menu={true} page={"main"} onBurger={handleBurgerClick} isOpen={isBurgerOpen} onClose={closeBurger} />
+          <Header loggedIn={true} background={true} minimal={false} menu={true} page={"main"} onBurger={handleBurgerClick} isOpen={isBurgerOpen} onClose={closeBurger} />
           <Main />
           <Footer />
         </Route>
