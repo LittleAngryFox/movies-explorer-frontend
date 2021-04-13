@@ -1,0 +1,114 @@
+.student__portfolio {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 125px 0;
+}
+
+@media (max-width: 768px) {
+    .student__portfolio {
+        margin-bottom: 90px;
+    }
+}
+
+@media (max-width: 640px) {
+    .student__portfolio {
+        margin-bottom: 70px;
+    }
+}
+
+.student__portfolio-title {
+    margin: 100px 0 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.11;
+    color: #8b8b8b;
+}
+
+@media (max-width: 768px) {
+    .student__portfolio-title {
+        margin-top: 90px;
+    }
+}
+
+@media (max-width: 640px) {
+    .student__portfolio-title {
+        margin-top: 69px;
+        font-size: 14px;
+        line-height: 1.43;
+    }
+}
+
+.student__portfolio-link:first-of-type {
+    margin-top: 50px;
+}
+
+@media (max-width: 640px) {
+    .student__portfolio-link:first-of-type {
+        margin-top: 40px;
+    }
+}
+
+.student__portfolio-link {
+    display: flex;
+    margin: 20px 0 0;
+    padding-bottom: 19px;
+    text-decoration: none;
+    color: white;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.67;
+    letter-spacing: -0.04em;
+    border-bottom: 1px solid #424242;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.student__portfolio-link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .student__portfolio-link {
+        font-size: 28px;
+        line-height: 1.79;
+    }
+}
+
+@media (max-width: 640px) {
+    .student__portfolio-link {
+        font-size: 18px;
+        line-height: 1.56;
+    }
+}
+
+.student__portfolio-link:last-child {
+    border-bottom: none;
+}
+
+.student__portfolio-link-item {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+.student__portfolio-arow {
+    background-image: url('../../images/arow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 29px;
+}
+
+@media (max-width: 768px) {
+    .student__portfolio-arow {
+        width: 27px;
+    }
+}
+
+@media (max-width: 640px) {
+    .student__portfolio-arow {
+        width: 18px;
+    }
+}

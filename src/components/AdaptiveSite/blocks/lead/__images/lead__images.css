@@ -1,0 +1,15 @@
+.RTlead__images {
+    margin: 0 auto;
+    padding: 0 calc((100% - 1024px)/2.56 + 48px);
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px)
+{    
+    .RTlead__images {
+        padding: 0 calc((100% - 768px)/10.66);
+    }
+}

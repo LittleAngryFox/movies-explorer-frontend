@@ -1,0 +1,7 @@
+.HTLfooter__columns {
+  margin: 60px 0 40px 0;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+}

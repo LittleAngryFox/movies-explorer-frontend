@@ -1,0 +1,41 @@
+@import url(./__title/lead__title.css);
+@import url(./__subtitle/lead__subtitle.css);
+@import url(./__images/lead__images.css);
+@import url(./__image/lead__image.css);
+@import url(./__caption/lead__caption.css);
+
+.RTlead {
+    width: 100%;
+    margin: 0 auto;
+    padding: 56px 0 92px 0;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+@media screen and (max-width: 1024px)
+{
+    .RTlead {
+        padding: 48px 0 92px 0;
+    
+    }
+}
+
+@media screen and (max-width: 768px)
+{
+    .RTlead {
+        padding: 48px 0 88px 0;
+    
+    }
+}
+
+@media screen and (max-width: 320px)
+{
+    .RTlead {
+        padding: 48px 0 64px 0;
+    
+    }
+}

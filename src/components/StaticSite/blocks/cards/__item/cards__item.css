@@ -1,0 +1,19 @@
+.HTLcards__item {
+  margin: 60px 100px 0 0;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 240px;
+  max-width: 240px;
+
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.HTLcards__item:nth-child(3n) {
+  margin: 60px 0 0 0;
+}

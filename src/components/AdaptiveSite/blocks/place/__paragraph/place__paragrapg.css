@@ -1,0 +1,22 @@
+.RTplace__paragraph {
+    margin: 0 0 24px 0;
+    
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.67;
+    /* or 167% */
+}
+
+.RTplace__paragraph:last-child {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px)
+{
+    .RTplace__paragraph {
+        font-size: 16px;
+        line-height: 1.62;
+        /* or 162% */
+    }
+}

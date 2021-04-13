@@ -1,0 +1,17 @@
+@import url(./__triangle/kaufman__triangle.css);
+
+/*Пятая секция Kaufman*/
+.HTLkaufman {
+  margin: 0;
+
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: #1f1f1f;
+}
