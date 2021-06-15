@@ -1,17 +1,14 @@
 import React from 'react';
 
 function FilterChecbox(props) {
-  const [shortFilm, setShortFilm] = React.useState(false);
-
   function handleChangeShortFilm(e) {
-    setShortFilm(e.target.checked);
     props.onCheckBox(e.target.checked);
   }
 
   return (
 
     <fieldset className="search-form__short-film">
-      <input className="search-form__check" type="checkbox" id="short-film" value={shortFilm} onClick={handleChangeShortFilm} />
+      <input className="search-form__check" type="checkbox" id="short-film" defaultChecked={props.shortFilm} value={props.shortFilm} onClick={handleChangeShortFilm} disabled={props.shortFilm ? false : props.disabled} />
       <label className="search-form__check-label" htmlFor="short-film">
         <dl className="search-form__check-switch"></dl>
       </label>
@@ -19,7 +16,6 @@ function FilterChecbox(props) {
     </fieldset>
 
   );
-
 }
 
 export default FilterChecbox;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Techs.css'
+import './Techs.css';
 
 function Techs() {
   return (
@@ -12,7 +12,7 @@ function Techs() {
           <div className="technology__info">
             <h2 className="technology__info-title">7 технологий</h2>
             <p className="technology__info-subtitle">На курсе веб&#8209;разработки мы освоили технологии, которые
-            применили в дипломном проекте.</p>
+              применили в дипломном проекте.</p>
           </div>
 
           <ul className="technology__tool">

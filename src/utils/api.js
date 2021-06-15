@@ -4,7 +4,7 @@ class Api {
     }
 
     _checkResponse(res) {
-        return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+        return res.ok ? res.json() : Promise.reject({status: res.status});
     }
 
     //загрузка начальных фильмов
@@ -45,8 +45,8 @@ class Api {
                 'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify({
-                name: name,
-                email: email
+                name: name.value,
+                email: email.value
             })
         })
             .then(res => {
@@ -102,43 +102,12 @@ class Api {
     changeSaveMovieStatus(isSaved, token, info) {
         return isSaved ? this.deleteSavedMovie(info.id, token) : this.savedMovie(info, token);
     }
-    /* 
-        //активация кнопки лайка
-        activeLike(id, token) {
-            return fetch(this._baseUrl + `/cards/${id}/likes`, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(res => {
-                    return this._checkResponse(res);
-                });
-        }
-    
-        //деактивация кнопки лайка
-        deleteLike(id, token) {
-            return fetch(this._baseUrl + `/cards/${id}/likes`, {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
-                .then(res => {
-                    return this._checkResponse(res);
-                });
-        } */
-
 }
 
 //запросы к серверу
 const api = new Api({
-    //baseUrl: 'https://api.lenin.mesto.students.nomoredomains.icu',
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://api.lenin.movies.nomoredomains.club/',
+    //baseUrl: 'http://localhost:3000',
 });
 
 export default api;

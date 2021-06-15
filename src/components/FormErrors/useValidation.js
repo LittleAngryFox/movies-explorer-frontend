@@ -18,16 +18,16 @@ function useValidation(value, validations) {
     }
 
     function handleMinLength(length) {
-        setIsMinLengthError(true)
-        setIsErrorMessage(`Минимальная длина поля - ${length} символa(ов)`)
+        setIsMinLengthError(true);
+        setIsErrorMessage(`Минимальная длина поля - ${length} символa(ов)`);
     }
     function handleMinLengthOff() {
         setIsMinLengthError(false);
     }
 
     function handleMaxLength(length) {
-        setIsMaxLengthError(true)
-        setIsErrorMessage(`Максимальная длина поля - ${length} символa(ов)`)
+        setIsMaxLengthError(true);
+        setIsErrorMessage(`Максимальная длина поля - ${length} символa(ов)`);
     }
     function handleMaxLengthOff() {
         setIsMaxLengthError(false);
@@ -35,7 +35,7 @@ function useValidation(value, validations) {
 
     function handleIsEmail() {
         setIsEmail(true);
-        setIsErrorMessage(`Невалидный e-mail`)
+        setIsErrorMessage('Невалидный e-mail');
     }
 
     function handleIsEmailOff() {
@@ -44,7 +44,7 @@ function useValidation(value, validations) {
 
     function handleIsLogin() {
         setIsLogin(true);
-        setIsErrorMessage("Имя может содержать латиницу, кириллицу, дефис и пробел");
+        setIsErrorMessage('Имя может содержать латиницу, кириллицу, дефис и пробел');
     }
 
     function handleIsLoginOff() {
@@ -53,25 +53,21 @@ function useValidation(value, validations) {
 
     React.useEffect(() => {
         for (const validation in validations) {
-
             switch (validation) {
                 case 'minLength': {
                     value.length < validations[validation] ? handleMinLength(validations[validation]) : handleMinLengthOff();
                     break;
                 }
-
                 case 'maxLength': {
                     value.length > validations[validation] ? handleMaxLength(validations[validation]) : handleMaxLengthOff();
                     break;
                 }
-
                 case 'isEmpty': {
-                    value.trim() ? handleIsEmptyOff() : handleIsEmpty()
+                    (value.trim()) ? handleIsEmptyOff() : handleIsEmpty();
                     break;
                 }
-
                 case 'isEmail': {
-                    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    const re = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     re.test(String(value).toLowerCase()) ? handleIsEmailOff() : handleIsEmail();
                     break;
                 }
@@ -80,11 +76,10 @@ function useValidation(value, validations) {
                     re.test(String(value).toLowerCase()) ? handleIsLoginOff() : handleIsLogin();
                     break;
                 }
-
                 default:
                 // do nothing
             }
-        }
+        };
     }, [value, validations]);
 
     React.useEffect(() => {
@@ -94,9 +89,7 @@ function useValidation(value, validations) {
             setIsValid(true);
             setIsErrorMessage('');
         }
-
-    }, [isEmpty, isEmail, isMinLengthError, isMaxLengthError, isLogin,])
-
+    }, [isEmpty, isEmail, isMinLengthError, isMaxLengthError, isLogin]);
 
     return {
         isMinLengthError,
@@ -108,7 +101,27 @@ function useValidation(value, validations) {
         isValid,
         setIsErrorMessage,
         setIsValid,
-    }
+    };
 }
 
-export default useValidation;
+function useInput({ initialValue, validations }) {
+
+    const [value, setValue] = React.useState(initialValue);
+    const [isDirty, setIsDirty] = React.useState(false);
+    const valid = useValidation(value, validations);
+
+
+    const onChange = (e) => {
+        setValue(e.target.value);
+    };
+
+    const onBlur = () => {
+        setIsDirty(true);
+    };
+
+    return {
+        value, onChange, onBlur, setValue, setIsDirty, isDirty, valid: { ...valid },
+    };
+}
+
+export default useInput;

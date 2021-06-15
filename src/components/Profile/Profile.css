@@ -58,6 +58,7 @@
 }
 
 .row {
+    position: relative;
     display: flex;
     align-items: center;
     margin: 17px 0 220px 0;
@@ -160,13 +161,19 @@
     outline: none;
 }
 
-.account__button-reg {
+.account__button_reg {
     font-weight: 400;
     margin-bottom: 16px;
 }
 
-.account__button-out {
+.account__button_out {
     font-weight: 500;
     text-decoration: none;
     color: #EE3465;
+}
+
+.account__button_undo {
+   margin: 10px 0 0;
+    font-weight: 400;
+    margin-bottom: 16px;
 }
