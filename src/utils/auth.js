@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.lenin.movies.nomoredomains.club/';
+export const BASE_URL = 'https://api.lenin.movies.nomoredomains.club';
 //export const BASE_URL = 'http://localhost:3000';
 
 export const register = (name, email, password) => fetch(`${BASE_URL}/signup`, {

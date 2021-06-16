@@ -50,7 +50,8 @@
 
 @media (max-width: 768px) {
     .header_auth {
-        padding-top: 232px;
+        padding-top: 150px;
+        /*232*/
     }
 }
 

@@ -13,7 +13,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "deploy": "npm run build && scp -r ./build/ lenin@178.154.228.150:/home/lenin/movies-explorer-frontend",
+    "deploy": "scp -r ./build/ lenin@178.154.228.150:/home/lenin/movies-explorer-frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

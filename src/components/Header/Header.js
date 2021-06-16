@@ -31,8 +31,8 @@ function Header(props) {
                                 </>
                             )
                                 : <div className='header__auth'>
-                                    <Link to='/signup' className='header__link'>Регистрация</Link>
-                                    <Link to='/signin' className='header__button'>Войти</Link>
+                                    <Link to='/signup' className='header__link' onClick={props.onClearError}>Регистрация</Link>
+                                    <Link to='/signin' className='header__button' onClick={props.onClearError}>Войти</Link>
                                 </div>
                         }
 

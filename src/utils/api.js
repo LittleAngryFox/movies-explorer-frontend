@@ -106,7 +106,7 @@ class Api {
 
 //запросы к серверу
 const api = new Api({
-    baseUrl: 'https://api.lenin.movies.nomoredomains.club/',
+    baseUrl: 'https://api.lenin.movies.nomoredomains.club',
     //baseUrl: 'http://localhost:3000',
 });
 

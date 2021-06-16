@@ -24,9 +24,7 @@ import Login from '../Login/Login';
 import Loader from '../Loader/Loader';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
-import HowToLearn from '../StaticSite/StaticSite';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import RussianTravel from '../AdaptiveSite/AdaptiveSite';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -409,6 +407,10 @@ function App() {
     }
   }
 
+  function handleHiddenErrorSign() {
+    setErrorApi({ value: false, message: '' });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
@@ -416,24 +418,24 @@ function App() {
 
         <Switch>
 
-          <Route path='/signin'>
-            <Header minimal={true} />
-            <Login onLogin={handleLoginSubmit} apiError={errorApi} />
-          </Route>
-
-          <Route path='/signup'>
-            <Header minimal={true} />
-            <Register onRegister={handleRegisterSubmit} apiError={errorApi} />
-          </Route>
-
           <Route exact path='/'>
-            <Header loggedIn={loggedIn} background={true} menu={true} page={'main'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} />
+            <Header loggedIn={loggedIn} background={true} menu={true} page={'main'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} onClearError={handleHiddenErrorSign} />
             <Main />
             <Footer />
           </Route>
 
+          <Route path='/signin'>
+            <Header minimal={true} onClearError={handleHiddenErrorSign} />
+            <Login onLogin={handleLoginSubmit} apiError={errorApi} />
+          </Route>
+
+          <Route path='/signup'>
+            <Header minimal={true} onClearError={handleHiddenErrorSign} />
+            <Register onRegister={handleRegisterSubmit} apiError={errorApi} />
+          </Route>
+
           <Route path='/movies'>
-            <Header loggedIn={loggedIn} menu={true} page={'movies'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} />
+            <Header loggedIn={loggedIn} menu={true} page={'movies'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} onClearError={handleHiddenErrorSign} />
             <ProtectedRoute
               path='/movies'
               component={Movies}
@@ -457,7 +459,7 @@ function App() {
           </Route>
 
           <Route path='/saved-movies'>
-            <Header loggedIn={loggedIn} menu={true} page={'saved-movies'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} />
+            <Header loggedIn={loggedIn} menu={true} page={'saved-movies'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} onClearError={handleHiddenErrorSign} />
             <ProtectedRoute
               path='/saved-movies'
               component={SavedMovies}
@@ -482,7 +484,7 @@ function App() {
 
 
           <Route path='/profile'>
-            <Header loggedIn={loggedIn} menu={true} page={'profile'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} />
+            <Header loggedIn={loggedIn} menu={true} page={'profile'} onBurger={handleActiveBurgerMenu} isOpen={isBurgerOpen} onClose={handleCloseBurgerMenu} onClearError={handleHiddenErrorSign} />
             <ProtectedRoute
               path='/profile'
               component={Loader}
@@ -502,14 +504,6 @@ function App() {
               onUpdateUser={handleUpdateUser}
               handleCloseSaveButton={handleCloseSaveButton}
             />
-          </Route>
-
-          <Route path='/how-to-learn'>
-            <HowToLearn />
-          </Route>
-
-          <Route path='/russian-travel'>
-            <RussianTravel />
           </Route>
 
           <Route path='/*'>
