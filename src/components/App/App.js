@@ -246,6 +246,7 @@ function App() {
   function handleLogin() {
     setLoggedIn(true);
     history.push('/movies');
+    setReportApi(false);
   }
 
   //Выход
@@ -253,7 +254,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('keySearch');
     localStorage.removeItem('shortSearch');
-    
+
     setLoggedIn(false);
     setCurretUser({ _id: '', name: 'Имя профиля', email: 'Информация о пользователе' });
 
