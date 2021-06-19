@@ -39,7 +39,7 @@ function MoviesCardList(props) {
 
                 {
                     (!props.saveFilmUser) &&
-                    ((props.searchStatus) ?
+                    ((props.searchStatus || !(props.searchStart || props.searchStatus)) ?
                         (<ul className="movies__list"> {
                             props.movies && props.movies.filter((_moviefilter, id) => id < countMovies).map(
                                 (movie) => (<MoviesCard saveFilmUser={props.saveFilmUser}
@@ -58,7 +58,7 @@ function MoviesCardList(props) {
                 }
 
                 {
-                    (!props.saveFilmUser && props.movies && props.searchStatus && countMovies < props.movies.length) &&
+                    (!props.saveFilmUser && props.movies && (props.searchStatus || !(props.searchStart || props.searchStatus)) && countMovies < props.movies.length) &&
                     (<div className="more">
                         <button type="button" className="more__button" onClick={handleCountMovies}>Ещё</button>
                     </div>)

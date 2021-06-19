@@ -17,7 +17,7 @@ function Movies(props) {
                 keySearch={props.keySearch}
                 movies={props.moviesSearch} />
 
-            {props.searchStart &&
+            {props.searchStart ?
                 <Loader page={MoviesCardList}
                     load={!props.searchEnd}
                     saveFilmUser={false}
@@ -27,7 +27,16 @@ function Movies(props) {
                     keySearch={props.keySearch}
                     savedMovies={props.savedMovies}
                     onClickSaved={props.onClickSaved}
-                    sizeWindow={props.sizeWindow} />}
+                    sizeWindow={props.sizeWindow}/> 
+                :
+                <MoviesCardList saveFilmUser={false}
+                    searchStart={props.searchStart}
+                    searchStatus={props.searchStatus}
+                    movies={props.moviesSearch}
+                    keySearch={props.keySearch}
+                    savedMovies={props.savedMovies}
+                    onClickSaved={props.onClickSaved}
+                    sizeWindow={props.sizeWindow}/>}
         </>
     );
 }

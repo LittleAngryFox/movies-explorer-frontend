@@ -53,6 +53,8 @@ function App() {
 
   //ошибки от API
   const [errorApi, setErrorApi] = React.useState({ value: false, message: '' });
+  //ответ от API (true - ошибок нет, false - произошла ошибка)
+  const [reportApi, setReportApi] = React.useState(false);
   //ключ поиска по основным фильмам (вкладка Фильмы)
   const [keySearch, setKeySearch] = React.useState('');
   //ключ поиска по сохраненным фильмам (вкладка Сохраненные фильмы)
@@ -92,9 +94,10 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            if (localPlace === "/signin" || localPlace === "/signup")
+            startInfoMovies();
+            if (localPlace === "/signin" || localPlace === "/signup") {
               history.push("/movies");
-            else
+            } else
               history.push(localPlace);
           }
         });
@@ -105,10 +108,20 @@ function App() {
     setLocalPlace(location.pathname);
   }, []);
 
+  function startInfoMovies() {
+    const lastKey = localStorage.getItem('keySearch');
+    lastKey && setKeySearch(JSON.parse(lastKey));
+    const lastShort = localStorage.getItem('shortSearch');
+    lastShort && setShortFilm(JSON.parse(lastShort));
+    const moviesLocal = localStorage.getItem('movies');
+    moviesLocal && setMovies(JSON.parse(moviesLocal));
+  }
+
   //Получение информации о пользователе
   React.useEffect(() => {
     //если выполнен вход
     if (loggedIn) {
+
       const token = localStorage.getItem('token');
       //отправляем запрос к внутреннему API для получения пользовательских данных
       api.getUserInfo(token)
@@ -150,10 +163,16 @@ function App() {
 
   //отрисовка фильмов (вкладка Фильм)
   React.useEffect(() => {
-    if (keySearch && searchStart && movies) {
+    if (((keySearch || searchStart)) && movies) {
       const moviesList = MoviesFilter(movies, keySearch, shortFilm);
       setSearchStatus(true);
-      (moviesList.length !== 0) ? setMoviesSearch(moviesList) : setSearchStatus(false);
+      if (moviesList.length !== 0) {
+        setMoviesSearch(moviesList);
+        localStorage.setItem('keySearch', JSON.stringify(keySearch));
+        localStorage.setItem('shortSearch', JSON.stringify(shortFilm));
+      } else {
+        setSearchStatus(false);
+      };
       setSearchEnd(true);
     }
   }, [movies, keySearch, shortFilm, searchStart]);
@@ -163,8 +182,9 @@ function App() {
     if ((keySearchSave || searchStartSaved) || shortFilmSaved) {
       const moviesList = MoviesFilter(savedFilms, keySearchSave, shortFilmSaved);
       setSearchStatusSaved(true);
-      (moviesList.length !== 0) ? setSavedMoviesSearch(moviesList) : setSearchStatusSaved(false);
+      moviesList.length !== 0 ? setSavedMoviesSearch(moviesList) : setSearchStatusSaved(false);
       setSearchEndSaved(true);
+
     }
   }, [savedFilms, keySearchSave, shortFilmSaved, searchStartSaved, searchEndSaved]);
 
@@ -202,8 +222,7 @@ function App() {
   //изменение поиска по короткометражке во вкладке Фильм
   function handleChangeShortFilm(e) {
     setShortFilm(e);
-    setSearchStart(true);
-    setMoviesSearch([]);
+    e ? setSearchStart(true) : setSearchStart(false);
   }
 
   //изменение поиска по короткометражке во вкладке Сохраненные фильмы
@@ -232,6 +251,9 @@ function App() {
   //Выход
   function handleLogout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('keySearch');
+    localStorage.removeItem('shortSearch');
+    
     setLoggedIn(false);
     setCurretUser({ _id: '', name: 'Имя профиля', email: 'Информация о пользователе' });
 
@@ -257,8 +279,10 @@ function App() {
   function handleIsInfoTooltipClick(positiveStatus, message, email, password) {
     if (positiveStatus) {
       setErrorApi(false, '');
+      setReportApi(true);
       handleLoginSubmit(email, password);
     } else {
+      setReportApi(false);
       setErrorApi({ value: true, message });
     }
   }
@@ -311,16 +335,16 @@ function App() {
   //Форматирование массива со стороннего API
   function reAssembleArray(array) {
     const newArray = array.map((item) => ({
-      id: item.id || '',
-      nameRU: item.nameRU || '',
+      id: item.id || 'none',
+      nameRU: item.nameRU || 'none',
       nameEN: item.nameEN || item.nameRU,
-      duration: item.duration || '',
+      duration: item.duration || 0,
       image: item.image ? `https://api.nomoreparties.co${item.image.url}` : '',
       trailerLink: item.trailerLink || 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
-      director: item.director || '',
-      country: item.country || '',
-      description: item.description || '',
-      year: item.year || '',
+      director: item.director || 'none',
+      country: item.country || 'none',
+      description: item.description || 'none',
+      year: item.year || 'none',
       thumbnail: item.image ? `https://api.nomoreparties.co${item.image.formats.thumbnail.url}` : '',
     }));
     return newArray;
@@ -337,6 +361,7 @@ function App() {
           //сохраняем в сторедже
           localStorage.setItem('movies', JSON.stringify(listMovies));
           setMovies(JSON.parse(localStorage.getItem('movies')));
+          setMoviesSearch([...movies]);
         })
         .catch((err) => console.log(err));
     }
@@ -426,12 +451,12 @@ function App() {
 
           <Route path='/signin'>
             <Header minimal={true} onClearError={handleHiddenErrorSign} />
-            <Login onLogin={handleLoginSubmit} apiError={errorApi} />
+            <Login onLogin={handleLoginSubmit} apiError={errorApi} reportApi={reportApi}/>
           </Route>
 
           <Route path='/signup'>
             <Header minimal={true} onClearError={handleHiddenErrorSign} />
-            <Register onRegister={handleRegisterSubmit} apiError={errorApi} />
+            <Register onRegister={handleRegisterSubmit} apiError={errorApi} reportApi={reportApi}/>
           </Route>
 
           <Route path='/movies'>

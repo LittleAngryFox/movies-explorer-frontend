@@ -19,13 +19,16 @@ function Register(props) {
 
         props.onRegister(name.value, email.value, password.value);
 
-        name.setValue('');
-        email.setValue('');
-        password.setValue('');
+        //если нет ошибки - очищаем поля
+        if (props.reportApi) {
+            name.setValue('');
+            email.setValue('');
+            password.setValue('');
 
-        name.setIsDirty(false);
-        email.setIsDirty(false);
-        password.setIsDirty(false);
+            name.setIsDirty(false);
+            email.setIsDirty(false);
+            password.setIsDirty(false);
+        }
     }
 
     return (

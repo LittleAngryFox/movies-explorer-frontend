@@ -23,11 +23,14 @@ function Login(props) {
 
         props.onLogin(email.value, password.value);
 
-        email.setValue('');
-        password.setValue('');
+        //если нет ошибки - очищаем поля
+        if (props.reportApi) {
+            email.setValue('');
+            password.setValue('');
 
-        email.setIsDirty(false);
-        password.setIsDirty(false);
+            email.setIsDirty(false);
+            password.setIsDirty(false);
+        }
     }
 
     return (
