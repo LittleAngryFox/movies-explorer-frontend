@@ -1,21 +1,18 @@
-import React from 'react';
-import './FormErrors.css'
-
+import './FormErrors.css';
 
 function FormErrors(props) {
     return (
-        <div className="form-error">
-            {   props.formErrors ?
-                <span>
+        <div className={`form-error ${props.addClassName && 'form-error_profile'}`}>
+            {props.formErrors
+                ? <span>
                     {props.formErrors}
-                </span> :
-                <span>
+                </span>
+                : <span>
 
                 </span>
             }
         </div>
     );
-
 }
 
 export default FormErrors;
